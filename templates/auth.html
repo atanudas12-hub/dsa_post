@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container glass-panel">
+    <div class="logo-area">
+        <h1>Leet<span class="highlight">Hub</span></h1>
+        <p>Showcase your grind. Inspire the future.</p>
+    </div>
+
+    <div class="auth-forms">
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+            <h2>Initialize Session</h2>
+            <div class="input-group">
+                <input type="text" id="login-username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="cyber-btn">Login <span class="arrow">→</span></button>
+            <p class="switch-msg">New node? <a href="#" id="show-signup">Establish connection</a></p>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form hidden">
+            <h2>Create Node</h2>
+            <div class="input-group">
+                <input type="text" id="signup-username" placeholder="New Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signup-password" placeholder="Set Password" required>
+            </div>
+            <button type="submit" class="cyber-btn">Register <span class="arrow">→</span></button>
+            <p class="switch-msg">Existing node? <a href="#" id="show-login">Login</a></p>
+        </form>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+        <a href="{{ url_for('index') }}" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">←
+            Observe Network (Anonymous)</a>
+    </div>
+
+    <div id="auth-error" class="error-msg hidden"></div>
+</div>
+{% endblock %}

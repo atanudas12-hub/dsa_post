@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar glass-panel">
+    <div class="nav-logo">Leet<span class="highlight">Hub</span></div>
+    <div class="nav-user">
+        {% if current_user.is_authenticated %}
+        <span class="username">:: {{ current_user.username }}</span>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Disconnect</a>
+        {% else %}
+        <a href="{{ url_for('auth') }}" class="cyber-btn small" style="text-decoration:none;">Initialize Session</a>
+        {% endif %}
+    </div>
+</nav>
+
+<main class="dashboard-grid">
+    {% if current_user.is_authenticated %}
+    <div class="post-creator glass-panel">
+        <h3>Broadcast Achievement</h3>
+        <form id="post-form">
+            <div class="input-group">
+                <input type="url" id="leetcode-url" placeholder="https://leetcode.com/problems/..." required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="cyber-btn small">Post Update</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="glass-panel" style="text-align:center; padding: 2rem;">
+        <h3>Login to Broadcast</h3>
+        <p style="color:var(--text-muted); margin-bottom:1rem;">Join the network to share your achievements.</p>
+    </div>
+    {% endif %}
+
+    <div class="feed-container">
+        <!-- Posts will be injected here via JS -->
+        <div id="loading" class="loading-spinner">Syncing Network...</div>
+    </div>
+</main>
+{% endblock %}
